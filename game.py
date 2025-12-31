@@ -242,12 +242,12 @@ class GameGUI(tk.Tk):
         # Load button images (keep references to prevent garbage collection)
         assets_dir = Path(__file__).parent / 'assets'
         # Load pre-resized 50x50 PNG images for better quality
-        self._btn_help = tk.PhotoImage(file=assets_dir / 'help-50.png')
-        self._btn_up = tk.PhotoImage(file=assets_dir / 'up-arrow-50.png')
-        self._btn_down = tk.PhotoImage(file=assets_dir / 'down-arrow-50.png')
-        self._btn_left = tk.PhotoImage(file=assets_dir / 'left-arrow-50.png')
-        self._btn_right = tk.PhotoImage(file=assets_dir / 'right-arrow-50.png')
-        self._btn_quit = tk.PhotoImage(file=assets_dir / 'quit-50.png')
+        self._btn_help = tk.PhotoImage(file=str(assets_dir / 'help-50.png'))
+        self._btn_up = tk.PhotoImage(file=str(assets_dir / 'up-arrow-50.png'))
+        self._btn_down = tk.PhotoImage(file=str(assets_dir / 'down-arrow-50.png'))
+        self._btn_left = tk.PhotoImage(file=str(assets_dir / 'left-arrow-50.png'))
+        self._btn_right = tk.PhotoImage(file=str(assets_dir / 'right-arrow-50.png'))
+        self._btn_quit = tk.PhotoImage(file=str(assets_dir / 'quit-50.png'))
 
         # Command buttons
         tk.Button(buttons_frame,
@@ -325,7 +325,7 @@ class GameGUI(tk.Tk):
 
         try:
             # Load new image
-            self._image_ref = tk.PhotoImage(file=image_path)
+            self._image_ref = tk.PhotoImage(file=str(image_path))
             # Clear canvas and redraw image
             self.canvas.delete("all")
             self.canvas.create_image(
@@ -333,7 +333,7 @@ class GameGUI(tk.Tk):
                 self.IMAGE_HEIGHT/2,
                 image=self._image_ref
             )
-        except FileNotFoundError:
+        except (FileNotFoundError, tk.TclError):
             # Fallback to text if image not found or cannot be loaded
             self.canvas.delete("all")
             self.canvas.create_text(
