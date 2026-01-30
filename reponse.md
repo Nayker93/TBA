@@ -227,3 +227,18 @@ self.action
 int
 12. Quelle est la variable qui permet d’y faire référence ?
 self.number_of_parameters
+
+## Diagramme de classe de la classe Game
+
+Game
+------
+finished : bool
+rooms : list
+commands : dict
+player : Player
+-------
+__init__ -> None
+setup(self) -> None
+play(self) -> None
+process_command(self, command_string) -> None
+print_welcome(self) -> None
