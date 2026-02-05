@@ -25,8 +25,14 @@ class Game:
         self.commands["help"] = help
         quit = Command("quit", " : quitter le jeu", Actions.quit, 0)
         self.commands["quit"] = quit
-        go = Command("go", " <direction> : se déplacer dans une direction cardinale (N, E, S, O)", Actions.go, 1)
+        go = Command(f"go", " <direction> : se déplacer dans une direction cardinale ({valid_direction}))",Actions.go, 1)
         self.commands["go"] = go
+        
+        # Setup des directions valides pour les commandes de déplacement
+        
+        valid_directions = ["N", "E", "S", "O", "U", "D"]
+        valide = set(valid_directions)
+    
         
         # Setup rooms
 
@@ -42,6 +48,13 @@ class Game:
         self.rooms.append(swamp)
         castle = Room("Castle", "un énorme château fort avec des douves et un pont levis. Sur les tours, des flèches en or massif.")
         self.rooms.append(castle)
+        
+        # New rooms
+        
+        castle_floor_1 = Room("Upstairs", "un étage du château..")
+        self.rooms.append(castle_floor_1)
+        castle_cellar = Room("Cellar", "une cave du château..")
+        self.rooms.append(castle_cellar)
 
         # Create exits for rooms
 
@@ -50,7 +63,16 @@ class Game:
         cave.exits = {"N" : None, "E" : cottage, "S" : forest, "O" : None}
         cottage.exits = {"N" : None, "E" : None, "S" : tower, "O" : cave}
         swamp.exits = {"N" : tower, "E" : None, "S" : None, "O" : castle}
-        castle.exits = {"N" : forest, "E" : swamp, "S" : None, "O" : None}
+        castle.exits = {"N" : forest, "E" : swamp, "S" : None, "O" : None, "D" : castle_cellar, "U" : castle_floor_1}
+        
+        # New exits for rooms
+        
+        castle_floor_1.exits = {"N" : None, "E" : None, "S" : None, "O" : None, "D" : castle, "U" : None}
+        castle_cellar.exits = {"N" : None, "E" : None, "S" : None, "O" : None, "D" : None, "U" : castle}
+
+        # Renseigner les directions valides utilisées dans le jeu
+        for room in self.rooms:
+            Room.VALID_DIRECTIONS.update(room.exits.keys())
 
         # Setup player and starting room
 
