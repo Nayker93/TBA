@@ -36,9 +36,6 @@ class Room:
 
     """
 
-    # Ensemble des directions valides rencontrées dans le jeu.
-    VALID_DIRECTIONS = set()
-
     # Define the constructor. 
     def __init__(self, name, description):
         self.name = name

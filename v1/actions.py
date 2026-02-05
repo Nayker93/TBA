@@ -16,6 +16,8 @@ MSG0 = "\nLa commande '{command_word}' ne prend pas de paramètre.\n"
 # The MSG1 variable is used when the command takes 1 parameter.
 MSG1 = "\nLa commande '{command_word}' prend 1 seul paramètre.\n"
 
+from room import Room
+
 class Actions:
 
     def go(game, list_of_words, number_of_parameters):
@@ -55,6 +57,10 @@ class Actions:
 
         # Get the direction from the list of words.
         direction = list_of_words[1]
+        # Check if the direction is valid.
+        if direction not in Room.VALID_DIRECTIONS:
+            print("\nDirection invalide !\n")
+            return False
         # Move the player in the direction specified by the parameter.
         player.move(direction)
         return True
