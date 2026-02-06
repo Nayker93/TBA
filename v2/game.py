@@ -27,6 +27,10 @@ class Game:
         self.commands["quit"] = quit
         go = Command(f"go", " <direction> : se déplacer dans une direction cardinale ({valid_direction}))",Actions.go, 1)
         self.commands["go"] = go
+        history = Command("history", " : afficher l'historique des pièces visitées", Actions.history, 0)
+        self.commands["history"] = history
+        back = Command("back", " : revenir en arrière", Actions.back, 0)
+        self.commands["back"] = back
         
         # Setup des directions valides pour les commandes de déplacement
         

@@ -286,3 +286,73 @@ Vrai
 Dans quelle fonction est il naturel de loger cette construction ?
 
 setup()
+
+## Construire un historique
+
+## Exercice 1 : Construire un historique
+
+Quelle est la classe concernée par cette modification ?
+
+Player
+
+Quelle est le type d’objet le plus adaptée pour mettre en oeuvre un historique ?
+
+list
+
+Sur cette structure de données, quelle est la méthode adaptée pour ajouter un lieu à l’historique ?
+
+append()
+
+Sur cette structure de données, quelle est la méthode adaptée pour revenir en arrière ?
+
+pop()
+
+Quelle fonction retournant une propriété essentielle de la structure de données faut il utiliser lors de multiples retours en arrière ?
+
+len() : retourne la taille de la liste
+
+Si le retour est possible, quel attribut de la classe concernée par la modification faut il mettre à jour ?
+
+current_room
+
+Au démarrage du jeu, l’historique doit il être initialisé avec le lieu dans lequel se trouve le joueur ? Pourquoi ?
+
+Faux, car il n'y a pas de salle précédente quand on démarre le jeu.
+
+Au démarrage du jeu, l’historique doit il être vide ? La raison est la même que celle invoquée à la question précédente.
+
+Vrai
+
+## Exercice 2 : Revenir en arrière
+
+Quelle est la classe concernée par la définition de la commande back ?
+
+Actions
+
+Quels sont ses paramètres ?
+
+game, list_of_words, number_of_parameters
+
+Quel est l’objet impacté directement par la commande back ?
+
+player
+
+Peut on l’atteindre directement ?
+
+Faux
+
+ou doit on l’atteindre en tant qu’attribut d’un autre objet ?
+
+Vrai
+
+Quel est cet objet ? Utiliser la chaine vide "" pour indiquer qu’on peut atteindre cet objet directement.
+
+game
+
+Peut on activer la commande back sans limite ?
+
+Faux
+
+Sinon, quelle fonction doit on utiliser sur l’historique pour vérifier que le retour en arrière est possible ?
+
+len()

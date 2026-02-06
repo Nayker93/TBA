@@ -1,11 +1,13 @@
 # Define the Player class.
 class Player():
     """
-    This class represents a player. A Player is composed of a name and a current room.
+    This class represents a player. A Player is composed of a name, a current room,
+    and a history of visited rooms.
 
     Attributes:
         name (str): The name of the player.
         current_room (Room): The current room of the player.
+        history (list[Room]): The history of previous rooms.
 
     Methods:
         __init__(self, name) : The constructor.
@@ -33,6 +35,7 @@ class Player():
     def __init__(self, name):
         self.name = name
         self.current_room = None
+        self.history = []
     
     # Define the move method.
     def move(self, direction):
@@ -44,9 +47,28 @@ class Player():
             print("\nAucune porte dans cette direction !\n")
             return False
         
-        # Set the current room to the next room.
+        # Add the current room to history, then move to the next room.
+        self.history.append(self.current_room)
         self.current_room = next_room
+        
         print(self.current_room.get_long_description())
         return True
+    
+    def get_history(self):
+        if not self.history:
+            return ""
 
+        room_history = ["\nVous avez déja visité les pièces suivantes:"]
+        for room in self.history:
+            room_history.append(f"    - {room.description}")
+        return "\n".join(room_history)
+
+    def back(self):
+        if not self.history:
+            print("\nAucun retour en arrière possible.\n")
+            return False
+
+        self.current_room = self.history.pop()
+        print(self.current_room.get_long_description())
+        return True
     
